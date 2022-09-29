@@ -3,8 +3,8 @@ import unittest
 # Counts the number of a's in a sentence (e.g., a string)
 def count_a(sentence):
 	total = 0
-	for i in range(len(sentence) - 1):
-		if i == 'a':
+	for i in range(len(sentence)):
+		if sentence[i] == 'a':
 			total += 1
 	return total
 
@@ -38,11 +38,15 @@ class Warehouse:
 
 	# Adds an item to the warehouse	
 	def add_item(self, item):
-		pass
+		self.items.append(item)
 
 	# Returns the item in the warehouse with the most stock		
 	def get_max_stock(self):
-		pass
+		max=self.items[0]
+		for item in self.items:
+			if item.stock > max.stock:
+				max = item 
+		return max
 	
 	# Returns the item in the warehouse with the highest price
 	def get_max_price(self):
@@ -63,7 +67,10 @@ class TestAllMethods(unittest.TestCase):
 
 	## Check to see whether count_a works
 	def test_count_a(self):
-		pass
+		aaa_count = count_a('aaa')
+		self.assertEqual(aaa_count, 3)
+		abcabc_count = count_a('abcabc')
+		self.assertEqual(abcabc_count, 2)
 
 
 	## Check to see whether you can add an item to the warehouse
